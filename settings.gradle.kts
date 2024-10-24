@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "ScanPharma"
 include(":app")
+include(":app")
  
