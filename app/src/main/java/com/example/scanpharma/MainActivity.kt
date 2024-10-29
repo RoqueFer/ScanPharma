@@ -1,6 +1,7 @@
 package com.example.scanpharma
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -17,31 +18,30 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent {
-            ScanPharmaTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+        setContentView(R.layout.main_activity)
+
+        // Navegação dos botões pelas telas
+        val entrarButton: Button = findViewById(R.id.EntrarButton)
+        entrarButton.setOnClickListener {
+            setContentView(R.layout.main_screen)
+
+            val logoutButton: Button = findViewById(R.id.LogoutButton)
+            logoutButton.setOnClickListener {
+                setContentView(R.layout.main_activity)
+            }
+
+            val bulasButton: Button = findViewById(R.id.BulasButton)
+            bulasButton.setOnClickListener {
+                setContentView(R.layout.bula)
+            }
+
+            val perfilRedirectButton: Button = findViewById(R.id.PerfilRedirectButton)
+            perfilRedirectButton.setOnClickListener {
+                setContentView(R.layout.perfil)
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ScanPharmaTheme {
-        Greeting("Android")
-    }
-}
+
